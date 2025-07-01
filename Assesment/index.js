@@ -5,7 +5,7 @@ const { Pool } = require("pg");
 const app = express();
 const PORT = 5000;
 const pool = require("./db_connect");
-
+const cors = require(cors)
 // Constants
 const MAX_USER_ATTEMPTS = 5;
 const MAX_IP_ATTEMPTS = 5;
@@ -13,6 +13,13 @@ const WINDOW_MS = 5 * 60 * 1000; // 5 minutes
 const USER_LOCK_TIME = 15 * 60 * 1000; // 15 minutes
 
 app.use(bodyParser.json());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true, 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
