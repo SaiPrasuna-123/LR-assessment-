@@ -13,12 +13,7 @@ const WINDOW_MS = 5 * 60 * 1000; // 5 minutes
 const USER_LOCK_TIME = 15 * 60 * 1000; // 15 minutes
 
 app.use(bodyParser.json());
-app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true, 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors());
 
 
 app.post("/login", async (req, res) => {
